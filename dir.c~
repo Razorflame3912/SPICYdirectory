@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <sys/types.h>
+
+
+
+int main(){
+  DIR* d = opendir("./");
+  printf("Directories:\n");
+  struct dirent* next;
+  while(next = readdir(d)){
+    if((*next).d_type == DT_DIR){
+      printf("%s\n",(*next).d_name);
+    }
+  }
+
+  closedir(d);
+
+  return 0;
+}
